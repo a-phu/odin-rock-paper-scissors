@@ -6,67 +6,61 @@ function computerPlay(){
     // return compTurn;
     switch(compTurn){
         case 1:
-            return "Rock";
+            return "rock";
             break;
         case 2:
-            return "Paper";
+            return "paper";
             break;
         case 3:
-            return "Scissors";
+            return "scissors";
             break;
     }
 }
 
-//function to compare player selection to computer selection
-function playRound(playerSelection, computerSelection){
-    //convert parameters to non case-sensitive
-    playerSelection = playerSelection.toLowerCase();
-    computerSelection = computerSelection.toLowerCase();
-
-    //if player selection is rock
-    switch(playerSelection){
-        case "rock":
-            if(computerSelection === "rock"){
-                return "It's a tie!";
-            } else if (computerSelection === "paper"){
-                return "You lose! Paper beats Rock.";
-            } else if (computerSelection === "scissors"){
-                return "You win! Rock beats Scissors.";
-            }
-            break;
-        case "paper":
-            if(computerSelection === "rock"){
-                return "You win! Paper beats Rock.";
-            } else if (computerSelection === "paper"){
-                return "It's a tie!";
-            } else if (computerSelection === "scissors"){
-                return "You lose! Scissors beats Paper.";
-            }
-            break;
-        case "scissors":
-            if(computerSelection === "rock"){
-                return "You lose! Rock beats Scissors.";
-            } else if (computerSelection === "paper"){
-                return "You win! Scissors beats Paper.";
-            } else if (computerSelection === "scissors"){
-                return "It's a tie!";
-            }
-            break;
-    }
-
-}
-
-//function that will play 5 games of rock, paper, scissors with the player's
-        //input and the computer's randomised answer
-function game(){
-
-    for(let i = 0; i < 5; i++){
-        let playerSelection = prompt("Rock, paper or scissors?");
-        console.log("Player: " + playerSelection);
-        let computerSelection = computerPlay();
-        console.log("Computer: " + computerSelection);
-        console.log(playRound(playerSelection, computerSelection));
+//functions to compare player selection to computer selection
+function playerPlaysRock(){
+    let computerSelection = computerPlay();
+    if(computerSelection === "rock"){
+        return "It's a tie!";
+    } else if (computerSelection === "paper"){
+        return "You lose! Paper beats Rock.";
+    } else if (computerSelection === "scissors"){ 
+        return "You win! Rock beats Scissors.";
     }
 }
 
-game();
+function playerPlaysPaper(){
+    let computerSelection = computerPlay();
+    if(computerSelection === "rock"){
+        return "You win! Paper beats Rock.";
+    } else if (computerSelection === "paper"){
+        return "It's a tie!";
+    } else if (computerSelection === "scissors"){
+        return "You lose! Scissors beats Paper.";
+    }
+}
+
+function playerPlaysScissors(){
+    let computerSelection = computerPlay();
+    if(computerSelection === "rock"){
+        return "You lose! Rock beats Scissors.";
+    } else if (computerSelection === "paper"){
+        return "You win! Scissors beats Paper.";
+    } else if (computerSelection === "scissors"){
+        return "It's a tie!";
+    }
+}
+
+//select each button
+const rockButton = document.querySelector('#rock');
+const paperButton = document.querySelector('#paper');
+const scissorsButton = document.querySelector('#scissors');
+
+//select results div
+const resultsDiv = document.querySelector("#results");
+
+//add event listeners to each button to print out results
+rockButton.addEventListener('click', () => resultsDiv.textContent = playerPlaysRock());
+paperButton.addEventListener('click', () => resultsDiv.textContent = playerPlaysPaper());
+scissorsButton.addEventListener('click', () => resultsDiv.textContent = playerPlaysScissors());
+
