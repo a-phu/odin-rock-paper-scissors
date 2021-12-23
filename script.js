@@ -17,50 +17,39 @@ function computerPlay(){
     }
 }
 
-//functions to compare player selection to computer selection
-function playerPlaysRock(){
-    let computerSelection = computerPlay();
-    if(computerSelection === "rock"){
-        return "It's a tie!";
-    } else if (computerSelection === "paper"){
-        return "You lose! Paper beats Rock.";
-    } else if (computerSelection === "scissors"){ 
-        return "You win! Rock beats Scissors.";
-    }
-}
-
-function playerPlaysPaper(){
-    let computerSelection = computerPlay();
-    if(computerSelection === "rock"){
-        return "You win! Paper beats Rock.";
-    } else if (computerSelection === "paper"){
-        return "It's a tie!";
-    } else if (computerSelection === "scissors"){
-        return "You lose! Scissors beats Paper.";
-    }
-}
-
-function playerPlaysScissors(){
-    let computerSelection = computerPlay();
-    if(computerSelection === "rock"){
-        return "You lose! Rock beats Scissors.";
-    } else if (computerSelection === "paper"){
-        return "You win! Scissors beats Paper.";
-    } else if (computerSelection === "scissors"){
-        return "It's a tie!";
-    }
-}
 
 //select each button
 const rockButton = document.querySelector('#rock');
 const paperButton = document.querySelector('#paper');
 const scissorsButton = document.querySelector('#scissors');
 
-//select results div
-const resultsDiv = document.querySelector("#results");
+//select results div and player + comp pts 
+const resultsDiv = document.querySelector(".results");
+const playerPtsP = document.querySelector("#playerPts")
+const compPtsP = document.querySelector("#compPts")
 
-//add event listeners to each button to print out results
-rockButton.addEventListener('click', () => resultsDiv.textContent = playerPlaysRock());
-paperButton.addEventListener('click', () => resultsDiv.textContent = playerPlaysPaper());
-scissorsButton.addEventListener('click', () => resultsDiv.textContent = playerPlaysScissors());
+//running score of player and computer points
+let playerPts = 0;
+let compPts = 0;
+playerPtsP.textContent = playerPts;
+compPtsP.textContent = compPts;
 
+//moved separate function into event listener function for rock button
+//updates result and player + comp pts
+rockButton.addEventListener('click', () => {
+    let computerSelection = computerPlay();
+    let result = '';
+    if(computerSelection === "rock"){
+        result = "It's a tie!";
+    } else if (computerSelection === "paper"){
+        compPts++;
+        result =  "You lose! Paper beats Rock.";
+    } else if (computerSelection === "scissors"){ 
+        playerPts++;
+        result =  "You win! Rock beats Scissors.";
+    }
+
+    resultsDiv.textContent = result;
+    playerPtsP.textContent = playerPts;
+    compPtsP.textContent = compPts;
+});
