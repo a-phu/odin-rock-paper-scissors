@@ -1,0 +1,77 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Dosis', sans-serif;
+}
+
+.header{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header div{
+    display: flex;
+    gap: 50px;
+    font-family: 'Dosis', sans-serif;
+    font-size: 2.5vw;
+    justify-content: center;
+}
+
+.header #rockHeader{
+    color: #6D91CF;
+}
+
+.header #paperHeader{
+    color: #FFACBA;
+}
+
+.header #scissorsHeader{
+    color: #FFDFAA;
+}
+
+h1{
+    margin-bottom: 30px;
+}
+
+.buttons{
+    display: flex;
+    gap: 100px;  
+    margin-bottom: 50px;
+}
+
+.buttons img:hover{
+    transform: scale(1.2);
+
+}
+.results{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
+}
+.results div{
+    display: flex;
+    padding: 0px 100px;
+    gap: 50px;
+    border:solid 2px black;
+    border-radius: 15px;
+    background-color: #FAFAFF;
+}
+
+.playAgain{
+    font-size: 20px;
+    padding: 20px 10px;
+    text-align: center;
+}
+
+.playAgain:hover{
+   transform: scale(1.2);
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    display:flex;
+    gap: 10px;
+}

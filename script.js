@@ -17,14 +17,48 @@ function computerPlay(){
     }
 }
 
-
 //select each button
 const rockButton = document.querySelector('#rock');
 const paperButton = document.querySelector('#paper');
 const scissorsButton = document.querySelector('#scissors');
 
+//add event listeners for each button to change colour
+rockButton.addEventListener('mouseover', hoverRockImg);
+rockButton.addEventListener('mouseout', revertRockImg);
+paperButton.addEventListener('mouseover', hoverPaperImg);
+paperButton.addEventListener('mouseout', revertPaperImg);
+scissorsButton.addEventListener('mouseover', hoverScissorsImg);
+scissorsButton.addEventListener('mouseout', revertScissorsImg);
+
+//functions to change img of buttons
+function hoverRockImg(){
+    this.src = "icons8-diamond-heart.png";
+}
+
+function revertRockImg(){
+    this.src = "https://img.icons8.com/carbon-copy/100/000000/diamond-heart.png";
+}
+
+function hoverPaperImg(){
+    this.src = "icons8-origami.png";
+}
+
+function revertPaperImg(){
+    this.src = "https://img.icons8.com/carbon-copy/100/000000/origami.png";
+}
+
+function hoverScissorsImg(){
+    this.src = "icons8-barber-scissors.png";
+}
+
+function revertScissorsImg(){
+    this.src = "https://img.icons8.com/carbon-copy/100/000000/barber-scissors.png";
+}
+
+
 //select results div and player + comp pts 
-const resultsDiv = document.querySelector(".results");
+const resultsDiv = document.querySelector(".result");
+const playAgainDiv = document.querySelector(".playAgain");
 const playerPtsP = document.querySelector("#playerPts")
 const compPtsP = document.querySelector("#compPts")
 
@@ -46,9 +80,18 @@ scissorsButton.addEventListener('click', () => {
     playGame("scissors");
 });
 
+//reset player + comp pts and playAgainDiv and play game again
+playAgainDiv.addEventListener('click', () => {
+    playerPts = 0;
+    compPts = 0;
+    playAgainDiv.textContent = '';
+    playGame();
+})
 
 //function to play rps passed to each button
 function playGame(playerSelection){
+    // while(playGame){
+    // playAgainDiv.textContent = '';
     if(playerPts < 5 && compPts < 5){
         let computerSelection = computerPlay();
         let result = '';
@@ -97,8 +140,10 @@ function playGame(playerSelection){
 
     if(playerPts == 5){
         resultsDiv.textContent = "You have beaten the computer!";
+        playAgainDiv.textContent = "Play again?";
     } else if (compPts == 5){
         resultsDiv.textContent = "You have lost against the computer! Better luck next time!";
+        playAgainDiv.textContent = "Play again?";
     }
     
 }
